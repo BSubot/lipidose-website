@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap (add this when you create one)
+# Sitemap: https://yourdomain.com/sitemap.xml

@@ -1,0 +1,28 @@
+{
+  "name": "lipidose-website",
+  "version": "1.0.0",
+  "description": "Lipidose™ - Novel Synergistic Therapy for Gram-Negative Infections",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build step required'",
+    "start": "npx serve .",
+    "preview": "npx serve ."
+  },
+  "keywords": [
+    "medical",
+    "pharmaceutical",
+    "lipidose",
+    "gram-negative",
+    "infections",
+    "antibiotics"
+  ],
+  "author": "Lipidose™ Team",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

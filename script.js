@@ -1,120 +1,170 @@
-// Mobile Navigation Toggle
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
 
-    hamburger.addEventListener('click', function() {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-        const isClickInsideNav = navMenu.contains(event.target);
-        const isClickOnHamburger = hamburger.contains(event.target);
-        
-        if (!isClickInsideNav && !isClickOnHamburger && navMenu.classList.contains('active')) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-    });
-});
-
-// Smooth scrolling for navigation links
+// Smooth scrolling for navigation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const headerOffset = 70;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
+        try {
+            const targetElement = document.querySelector(this.getAttribute('href'));
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            } else {
+                console.error('Target element not found');
+            }
+        } catch (error) {
+            console.error('Smooth scroll error:', error);
         }
     });
 });
 
-// Header background on scroll
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('.header');
-    if (window.scrollY > 100) {
-        header.style.background = 'rgba(255, 255, 255, 0.98)';
-        header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-    } else {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
-        header.style.boxShadow = 'none';
+// Email functionality for "Request More Info" button
+document.getElementById('request-info').addEventListener('click', function(e) {
+    try {
+        window.location.href = 'mailto:investor.relations@lipidose.com?subject=Lipidose Information Request';
+    } catch (error) {
+        console.error('Email request error:', error);
+        alert('There was an error opening your email client. Please email investor.relations@lipidose.com directly.');
     }
 });
 
-// Animate elements on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+// PDF download functionality for "Download Pitch Deck" button
+document.getElementById('download-pitch-deck').addEventListener('click', function(e) {
+    try {
+        // Create link element
+        const link = document.createElement('a');
+        link.href = './assets/Lipidose_Pitch_Deck.pdf';
+        link.download = 'Lipidose_Pitch_Deck.pdf';
+        link.target = '_blank';
 
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+        // Append to body, click, then remove
+        document.body.appendChild(link);
+        link.click();
+
+        // Small delay before removing element
+        setTimeout(() => {
+            document.body.removeChild(link);
+        }, 100);
+    } catch (error) {
+        console.error('Download error:', error);
+        alert('There was an error downloading the pitch deck. Please try again later.');
+    }
+});
+
+// Mobile menu toggle (if implemented in future)
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+
+if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', function() {
+        try {
+            mobileMenu.classList.toggle('hidden');
+        } catch (error) {
+            console.error('Mobile menu toggle error:', error);
         }
     });
-}, observerOptions);
-
-// Observe elements for animation
-document.addEventListener('DOMContentLoaded', function() {
-    const animateElements = document.querySelectorAll('.stat-card, .feature-card, .about-content');
-    
-    animateElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-});
-
-// Handle pitch deck download (placeholder - you'll need to add the actual file)
-document.getElementById('pitch-deck-btn').addEventListener('click', function(e) {
-    e.preventDefault();
-    
-    // Show alert for now - replace with actual file download
-    alert('Pitch deck download feature will be available once you upload the PDF file to your project.');
-    
-    // Uncomment and modify this when you have the actual file:
-    // const link = document.createElement('a');
-    // link.href = './assets/Lipidose_Pitch_Deck.pdf';
-    // link.download = 'Lipidose_Pitch_Deck.pdf';
-    // link.click();
-});
-
-// Form validation (if you add a contact form later)
-function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
 }
 
-// Add loading states for buttons
-document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        // Add subtle loading effect
-        this.style.transform = 'scale(0.98)';
-        setTimeout(() => {
-            this.style.transform = '';
-        }, 150);
+// Video responsiveness adjustments
+function adjustVideoSize() {
+    try {
+        const videoContainer = document.querySelector('.video-container');
+        if (videoContainer) {
+            const width = videoContainer.offsetWidth;
+            const height = width * 0.5625; // 16:9 aspect ratio
+
+            // Only adjust height for smaller screens where needed
+            if (window.innerWidth < 1200) {
+                videoContainer.style.height = height + 'px';
+            }
+        }
+    } catch (error) {
+        console.error('Video sizing error:', error);
+    }
+}
+
+// Run video adjustment on page load and resize
+window.addEventListener('load', adjustVideoSize);
+window.addEventListener('resize', adjustVideoSize);
+
+// Form validation (for future form implementations)
+function validateForm(formElement) {
+    try {
+        let isValid = true;
+        const requiredFields = formElement.querySelectorAll('[required]');
+
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.classList.add('error');
+
+                // Create error message if it doesn't exist
+                let errorMsg = field.nextElementSibling;
+                if (!errorMsg || !errorMsg.classList.contains('error-message')) {
+                    errorMsg = document.createElement('span');
+                    errorMsg.classList.add('error-message');
+                    errorMsg.textContent = 'This field is required';
+                    field.parentNode.insertBefore(errorMsg, field.nextSibling);
+                }
+            } else {
+                field.classList.remove('error');
+
+                // Remove error message if it exists
+                const errorMsg = field.nextElementSibling;
+                if (errorMsg && errorMsg.classList.contains('error-message')) {
+                    errorMsg.remove();
+                }
+            }
+        });
+
+        return isValid;
+    } catch (error) {
+        console.error('Form validation error:', error);
+        return false;
+    }
+}
+
+// Contact form event listener (for future implementations)
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        try {
+            if (!validateForm(this)) {
+                e.preventDefault();
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            e.preventDefault();
+        }
     });
+}
+
+// Automatic copyright year update
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        const yearElement = document.getElementById('current-year');
+        if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
+        }
+    } catch (error) {
+        console.error('Year update error:', error);
+    }
 });
 
-// Console log for development
-console.log('Lipidose™ website loaded successfully!');
+// Helper functions for animations and interactions
+function animateElement(element, animationClass) {
+    try {
+        if (element) {
+            element.classList.add(animationClass);
+            element.addEventListener('animationend', function() {
+                element.classList.remove(animationClass);
+            }, {once: true});
+        }
+    } catch (error) {
+        console.error('Animation error:', error);
+    }
+}
+
+// Document loaded notification (for development purposes)
+console.log('Lipidose™ script loaded successfully.');

@@ -10,15 +10,18 @@ A professional landing page for Lipidose™, a novel synergistic therapy for gra
 - Interactive elements
 - Call-to-action buttons
 
-## Deployment Instructions for Vercel
+# Lipidose™ Landing Page - GitHub + Netlify
 
-### Method 1: Direct Upload (Easiest)
+## Quick Deployment Instructions
 
-1. Create an account on [Vercel](https://vercel.com) if you don't have one
-2. From your Vercel dashboard, click "New Project"
-3. Drag and drop your project folder or click to upload
-4. Once uploaded, click "Deploy"
-5. Your site will be live in seconds!
+1. **Add Your Files**: Place your video file as `assets/Lipidose_Presentation_Video.mp4` and PDF as `assets/Lipidose_Pitch_Deck.pdf`
+
+2. **Push to GitHub**: 
+   ```bash
+   git add .
+   git commit -m "Initial commit"
+   git push origin main
+
 
 ### Method 2: GitHub Integration (Recommended for updates)
 

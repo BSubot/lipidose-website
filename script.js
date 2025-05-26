@@ -1,59 +1,103 @@
-// Video Controls and Functionality
+// Navigation and Video Controls
 document.addEventListener('DOMContentLoaded', function() {
-    const video = document.getElementById('hero-video');
-    const videoContainer = document.querySelector('.video-container');
-    
-    // Create video controls
-    const controlsDiv = document.createElement('div');
-    controlsDiv.id = 'video-controls';
-    
-    // Mute/unmute button
-    const muteBtn = document.createElement('button');
-    muteBtn.className = 'video-btn';
-    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-    muteBtn.addEventListener('click', function() {
-        if (video.muted) {
-            video.muted = false;
-            muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-        } else {
-            video.muted = true;
-            muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-        }
-    });
-    
-    // Play/pause button
-    const playBtn = document.createElement('button');
-    playBtn.className = 'video-btn';
-    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-    playBtn.addEventListener('click', function() {
-        if (video.paused) {
-            video.play();
-            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        } else {
-            video.pause();
-            playBtn.innerHTML = '<i class="fas fa-play"></i>';
-        }
-    });
-    
-    // Add controls to container
-    controlsDiv.appendChild(muteBtn);
-    controlsDiv.appendChild(playBtn);
-    videoContainer.appendChild(controlsDiv);
-    
-    // Ensure video plays when ready
-    video.addEventListener('canplay', function() {
-        video.play().catch(e => {
-            console.log("Auto-play prevented. User interaction required.");
+    // Mobile navigation toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+    }
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Initialize Vimeo player
+    const iframe = document.querySelector('#vimeo-player');
+    const player = new Vimeo.Player(iframe);
+    
+    // Video control buttons
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const muteBtn = document.getElementById('mute-btn');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    
+    // Play/pause control
+    if (playPauseBtn) {
+        playPauseBtn.addEventListener('click', function() {
+            player.getPaused().then(function(paused) {
+                if (paused) {
+                    player.play();
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    player.pause();
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                }
+            });
+        });
+    }
+    
+    // Mute/unmute control
+    if (muteBtn) {
+        muteBtn.addEventListener('click', function() {
+            player.getVolume().then(function(volume) {
+                if (volume > 0) {
+                    player.setVolume(0);
+                    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                } else {
+                    player.setVolume(1);
+                    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                }
+            });
+        });
+    }
+    
+    // Fullscreen control
+    if (fullscreenBtn) {
+        fullscreenBtn.addEventListener('click', function() {
+            player.requestFullscreen().catch(function(error) {
+                console.log('Fullscreen error:', error);
+            });
+        });
+    }
+    
+    // Update play button state when video state changes
+    player.on('play', function() {
+        if (playPauseBtn) {
+            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        }
+    });
+    
+    player.on('pause', function() {
+        if (playPauseBtn) {
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        }
     });
     
     // Email functionality
-    document.getElementById('request-info').addEventListener('click', function() {
-        window.location.href = 'mailto:investor.relations@lipidose.com?subject=Lipidose Information Request';
-    });
+    const requestInfoBtn = document.getElementById('request-info');
+    if (requestInfoBtn) {
+        requestInfoBtn.addEventListener('click', function() {
+            window.location.href = 'mailto:investor.relations@lipidose.com?subject=Lipidose Information Request';
+        });
+    }
     
     // PDF download functionality
-    document.getElementById('download-pitch-deck').addEventListener('click', function() {
+    function downloadPDF() {
         const link = document.createElement('a');
         link.href = 'assets/Lipidose_Pitch_Deck.pdf';
         link.download = 'Lipidose_Pitch_Deck.pdf';
@@ -61,8 +105,32 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-    });
+    }
+
+    const downloadBtn = document.getElementById('download-pitch-deck');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', downloadPDF);
+    }
     
     // Update copyright year
-    document.getElementById('current-year').textContent = new Date().getFullYear();
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const offset = 80; // Account for fixed navbar
+                const targetPosition = target.offsetTop - offset;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 });

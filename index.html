@@ -10,18 +10,64 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <!-- Hero Section with Local Video Background -->
-    <section class="hero">
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>Lipidose™</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#facts" class="nav-link">Clinical Data</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#why" class="nav-link">Why Lipidose™</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#cta" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Video Background -->
+    <section id="home" class="hero">
         <div class="video-container">
-            <video autoplay muted loop playsinline id="hero-video">
+            <video autoplay muted loop playsinline id="hero-video" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080'%3E%3Crect width='100%25' height='100%25' fill='%23000000'/%3E%3C/svg%3E">
                 <source src="assets/Lipidose_Presentation_Video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
+                <!-- Fallback content if video fails -->
             </video>
+            <div class="video-fallback">
+                <div class="fallback-content">
+                    <i class="fas fa-play-circle"></i>
+                    <p>Video presentation will appear here</p>
+                    <small>Please ensure your video file is named: Lipidose_Presentation_Video.mp4</small>
+                </div>
+            </div>
             <div class="overlay"></div>
             <div class="hero-content">
                 <h1>Lipidose™</h1>
                 <p class="tagline">A Novel Synergistic Approach</p>
                 <p class="subtagline">Lipidose™ + Antibiotics - The Future of Gram-Negative Infection Management</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+                        Learn More
+                    </button>
+                    <button id="download-pitch-deck" class="btn btn-secondary">
+                        Download Pitch Deck
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -133,7 +179,7 @@
             <h2>Ready to Learn More?</h2>
             <div class="cta-buttons">
                 <button id="request-info" class="btn btn-primary">Request More Info</button>
-                <button id="download-pitch-deck" class="btn btn-secondary">Download Pitch Deck</button>
+                <button id="download-pitch-deck-2" class="btn btn-secondary">Download Pitch Deck</button>
             </div>
         </div>
     </section>

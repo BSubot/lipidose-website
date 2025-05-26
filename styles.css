@@ -196,6 +196,7 @@ section { padding: 4rem 0; }
 .hero-content h1 {
     color: white;
     margin-bottom: 1rem;
+    margin-top: 2rem;  /* Add this line */
     font-size: 4rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     text-align: center;

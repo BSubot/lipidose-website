@@ -41,20 +41,15 @@
         </div>
     </nav>
 
-    <!-- Hero Section with Video Background -->
+    <!-- Hero Section with Vimeo Video Background -->
     <section id="home" class="hero">
         <div class="video-container">
-            <video autoplay muted loop playsinline id="hero-video" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080'%3E%3Crect width='100%25' height='100%25' fill='%23000000'/%3E%3C/svg%3E">
-                <source src="assets/Lipidose_Presentation_Video.mp4" type="video/mp4">
-                <!-- Fallback content if video fails -->
-            </video>
-            <div class="video-fallback">
-                <div class="fallback-content">
-                    <i class="fas fa-play-circle"></i>
-                    <p>Video presentation will appear here</p>
-                    <small>Please ensure your video file is named: Lipidose_Presentation_Video.mp4</small>
-                </div>
-            </div>
+            <iframe src="https://player.vimeo.com/video/1087823035?autoplay=1&muted=1&loop=1&background=1&controls=0&badge=0&autopause=0&player_id=0&app_id=58479" 
+                    frameborder="0" 
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" 
+                    title="Lipidose Presentation Video">
+            </iframe>
             <div class="overlay"></div>
             <div class="hero-content">
                 <h1>Lipidose™</h1>
@@ -193,6 +188,65 @@
         </div>
     </footer>
 
+    <!-- Vimeo Player API Script -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
     <script src="script.js"></script>
+    
+    <!-- Enhanced Vimeo Video Control Script -->
+    <script>
+        // Initialize Vimeo player with custom controls
+        document.addEventListener('DOMContentLoaded', function() {
+            const iframe = document.querySelector('iframe');
+            const player = new Vimeo.Player(iframe);
+            
+            // Set video to play automatically and loop
+            player.ready().then(function() {
+                player.setLoop(true);
+                player.play().catch(function(error) {
+                    console.log('Autoplay prevented:', error);
+                });
+            });
+            
+            // Add custom video controls overlay
+            const videoContainer = document.querySelector('.video-container');
+            const controlsDiv = document.createElement('div');
+            controlsDiv.id = 'video-controls';
+            controlsDiv.innerHTML = `
+                <button class="video-btn" id="play-pause-btn">
+                    <i class="fas fa-pause"></i>
+                </button>
+                <button class="video-btn" id="mute-btn">
+                    <i class="fas fa-volume-mute"></i>
+                </button>
+            `;
+            videoContainer.appendChild(controlsDiv);
+            
+            // Play/pause control
+            document.getElementById('play-pause-btn').addEventListener('click', function() {
+                player.getPaused().then(function(paused) {
+                    if (paused) {
+                        player.play();
+                        this.innerHTML = '<i class="fas fa-pause"></i>';
+                    } else {
+                        player.pause();
+                        this.innerHTML = '<i class="fas fa-play"></i>';
+                    }
+                }.bind(this));
+            });
+            
+            // Mute/unmute control
+            document.getElementById('mute-btn').addEventListener('click', function() {
+                player.getVolume().then(function(volume) {
+                    if (volume > 0) {
+                        player.setVolume(0);
+                        this.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    } else {
+                        player.setVolume(1);
+                        this.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    }
+                }.bind(this));
+            });
+        });
+    </script>
 </body>
 </html>

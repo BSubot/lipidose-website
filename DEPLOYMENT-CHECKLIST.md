@@ -48,16 +48,6 @@ git push -u origin main
 - [ ] Repository uploaded to GitHub successfully
 - [ ] All files visible in GitHub repository
 
-## ✅ Vercel Deployment
-
-- [ ] Create Vercel account at [vercel.com](https://vercel.com)
-- [ ] Sign in with GitHub (recommended)
-- [ ] Click "New Project"
-- [ ] Import your GitHub repository
-- [ ] Click "Deploy" (Vercel auto-detects static site)
-- [ ] Wait for deployment to complete
-- [ ] Click "Visit" to see your live website
-
 ## ✅ Post-Deployment
 
 - [ ] Website loads correctly
@@ -69,7 +59,6 @@ git push -u origin main
 
 ## ✅ Optional Enhancements
 
-- [ ] Add custom domain in Vercel settings
 - [ ] Set up Google Analytics
 - [ ] Add social media meta tags
 - [ ] Create sitemap.xml
@@ -84,10 +73,6 @@ git push -u origin main
    - Make sure you've set the correct remote URL
    - Check your GitHub credentials
 
-2. **Vercel deployment fails**:
-   - Check that all files are in the repository
-   - Ensure `index.html` is in the root directory
-
 3. **Website doesn't load**:
    - Check browser console for errors
    - Verify all file paths are correct
@@ -99,7 +84,6 @@ git push -u origin main
 ### Getting Help:
 
 - GitHub Issues: [GitHub Help](https://help.github.com)
-- Vercel Support: [Vercel Docs](https://vercel.com/docs)
 - Web Development: [MDN Web Docs](https://developer.mozilla.org)
 
 ## 📱 Testing Your Website

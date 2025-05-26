@@ -4,52 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lipidose™ - Novel Synergistic Therapy for Gram-Negative Infections</title>
-    <meta name="description" content="Lipidose™ represents a breakthrough in treating gram-negative bacterial infections by specifically targeting and neutralizing bacterial endotoxin (LPS).">
+    <meta name="description" content="Lipidose™ is a novel therapeutic approach that works synergistically with antibiotics to manage gram-negative bacterial infections by neutralizing endotoxin/LPS and reducing sepsis risk.">
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <div class="logo">
-                    <h2>Lipidose™</h2>
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#facts" class="nav-link">Clinical Data</a></li>
-                    <li><a href="#why" class="nav-link">Why Lipidose™</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
+    <!-- Hero Section with Local Video Background -->
     <section class="hero">
-        <div class="container">
+        <div class="video-container">
+            <video autoplay muted loop playsinline id="hero-video">
+                <source src="assets/Lipidose_Presentation_Video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="overlay"></div>
             <div class="hero-content">
-                <h1 class="hero-title">Lipidose™</h1>
-                <h2 class="hero-subtitle">A Novel Synergistic Approach — Lipidose™ + Antibiotics</h2>
-                <p class="hero-description">The Future of Gram-Negative Infection Management</p>
-                <!-- Self-hosted video starts here -->
-                <video width="560" height="315" controls style="display:block; margin: 2rem auto; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);">
-                  <source src="assets/Lipidose_Presentation_Video.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <!-- Self-hosted video ends here -->
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Learn More</a>
-                    <a href="#about" class="btn btn-secondary">About Lipidose™</a>
-                </div>
+                <h1>Lipidose™</h1>
+                <p class="tagline">A Novel Synergistic Approach</p>
+                <p class="subtagline">Lipidose™ + Antibiotics - The Future of Gram-Negative Infection Management</p>
             </div>
         </div>
     </section>
@@ -57,7 +29,124 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">About Lipidose™</h2>
-            <div class="about-content">
-                <p>Lipidose™ represents a breakthrough in treating gram-negative bacterial infections by specifically targeting and neutralizing bacterial endotoxin (LPS), the primary driver of septic shock and organ failure. Our proprietary compound works
+            <h2>About Lipidose™</h2>
+            <p>
+                Lipidose™ is a groundbreaking therapeutic agent that specifically binds and neutralizes bacterial endotoxin (LPS), 
+                which is released during gram-negative bacterial infections. By complementing antibiotic therapy, Lipidose™ 
+                significantly reduces inflammation and sepsis risk through its unique dual mechanism of action: enhancing HDL 
+                capacity to clear endotoxin and blocking the TLR4 pathway that triggers inflammatory cascades. This synergistic 
+                approach addresses both the infection and its toxic consequences simultaneously, providing a comprehensive 
+                solution for managing severe gram-negative infections.
+            </p>
+        </div>
+    </section>
 
+    <!-- Fast Facts Section -->
+    <section id="facts" class="facts">
+        <div class="container">
+            <h2>Clinical & Market Value</h2>
+            <div class="fact-grid">
+                <div class="fact-card">
+                    <div class="fact-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Mortality Risk</h3>
+                    <p>12-25%</p>
+                    <p class="fact-description">in Catheter-Related Bloodstream Infections</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Cost Savings</h3>
+                    <p>$25,000-$45,000</p>
+                    <p class="fact-description">Average savings per patient</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h3>Reduced ICU Stay</h3>
+                    <p>2-4 Days</p>
+                    <p class="fact-description">Shorter intensive care duration</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Patent Protection</h3>
+                    <p>Until 2032+</p>
+                    <p class="fact-description">Strategy to extend to 2040+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Lipidose Matters Section -->
+    <section id="why" class="why-matters">
+        <div class="container">
+            <h2>Why Lipidose™ Matters</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-bacteria"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>The Problem</h3>
+                        <p>
+                            Gram-negative bacterial infections release massive amounts of lipopolysaccharide (LPS), 
+                            triggering dangerous inflammatory cascades that can lead to septic shock and multi-organ failure.
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-capsules"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Our Solution</h3>
+                        <p>
+                            Lipidose™ specifically binds and neutralizes LPS before it can escalate into sepsis, 
+                            providing critical protection during the vulnerable period of antibiotic treatment.
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>The Advantage</h3>
+                        <p>
+                            Unlike any treatment on the market, Lipidose™ works synergistically with antibiotics, 
+                            addressing both the infection and its toxic inflammatory consequences simultaneously.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="cta" class="cta">
+        <div class="container">
+            <h2>Ready to Learn More?</h2>
+            <div class="cta-buttons">
+                <button id="request-info" class="btn btn-primary">Request More Info</button>
+                <button id="download-pitch-deck" class="btn btn-secondary">Download Pitch Deck</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Copyright © <span id="current-year">2023</span> All rights reserved.</p>
+            <p>Product name: Lipidose™</p>
+            <p>Lipidose™ is a proprietary compound. All rights reserved by its developer.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
